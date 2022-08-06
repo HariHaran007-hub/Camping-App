@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        app:strokeWidth="1dp"
+        app:cardBackgroundColor="@color/greenLight"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/profileImage"
+                android:padding="@dimen/_5sdp"
+                app:riv_corner_radius="@dimen/_4sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:src="@drawable/no_profile" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Name : Hari Haran R C "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/dateOfBirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:padding="@dimen/_2sdp"
+                    android:text="DOB : 2/02/2002"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/udidNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:padding="@dimen/_2sdp"
+                    android:text="UDID no: 12345"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/appliedOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Applied on:22/07/22 "
+                    android:textColor="@color/black" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment" >
+
+
+    <include
+        android:id="@+id/bottomSheet"
+        layout="@layout/bottom_sheet_fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/floatingActionButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="@dimen/_20sdp"-->
+<!--            android:clickable="true"-->
+<!--            android:layout_marginBottom="@dimen/_20sdp"-->
+
+<!--            android:src="@drawable/ic_baseline_gps_fixed_24"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_bold"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Location: Dindigul"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
+
+                <Button
+                    android:id="@+id/notifyAllUsers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/bg_button_enabled"
+                    android:text="notify users" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="@dimen/_14ssp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp">
+
+                    <TextView
+                        android:id="@+id/received"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="8"
+                        android:fontFamily="@font/mplus_rounded_1c_bold"
+                        android:padding="@dimen/_2sdp"
+                        android:text="No of applicants received aids: 0"
+                        android:textAlignment="center"
+                        android:textColor="#07A628"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:background="@color/black" />
+
+                    <TextView
+                        android:id="@+id/notReceived"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="8"
+                        android:fontFamily="@font/mplus_rounded_1c_bold"
+                        android:padding="@dimen/_2sdp"
+                        android:text="No of applicants not received aids: 0"
+                        android:textAlignment="center"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvVerifiedUsers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_50sdp"
+                tools:listitem="@layout/item_user" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
