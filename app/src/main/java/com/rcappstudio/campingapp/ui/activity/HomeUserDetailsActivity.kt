@@ -36,27 +36,27 @@ class HomeUserDetailsActivity : AppCompatActivity() {
     }
 
     private fun initView(){
-        binding.appliedOn.text = "Applied on: "+ getDateTime(userObject?.requestStatus!!.appliedOnTimeStamp!!)
-        binding.name.text = "Name: "+userObject.name
-        binding.dob.text = "DOB: " +userObject.dateOfBirth
-        binding.mobileNo.text = "Mobile no: "+ userObject.mobileNo
-
-        if(userObject.requestStatus!!.aidsReceived!!){
-            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext,
-                R.color.greenLight
-            ))
-            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext,
-                R.color.green
-            )
-            binding.aidsDeliveryTextView.text = "Aids/Appliance"
-        } else{
-            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext,
-                R.color.redLight
-            ))
-            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext,
-                R.color.red
-            )
-        }
+//        binding.appliedOn.text = "Applied on: "+ getDateTime(userObject?.requestStatus!!.appliedOnTimeStamp!!)
+//        binding.name.text = "Name: "+userObject.name
+//        binding.dob.text = "DOB: " +userObject.dateOfBirth
+//        binding.mobileNo.text = "Mobile no: "+ userObject.mobileNo
+//
+//        if(userObject.requestStatus!!.aidsReceived!!){
+//            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext,
+//                R.color.greenLight
+//            ))
+//            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext,
+//                R.color.green
+//            )
+//            binding.aidsDeliveryTextView.text = "Aids/Appliance"
+//        } else{
+//            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext,
+//                R.color.redLight
+//            ))
+//            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext,
+//                R.color.red
+//            )
+//        }
 
         binding.notifyUser.setOnClickListener {
             PushNotification(
@@ -76,30 +76,30 @@ class HomeUserDetailsActivity : AppCompatActivity() {
             .fit().centerCrop()
             .into(binding.profileIage)
 
-        Picasso.get()
-            .load(userObject.aidsVerificationDocs?.disabilityCertificateURL)
-            .fit().centerCrop()
-            .into(binding.disabilityCertificateImage)
-
-        Picasso.get()
-            .load(userObject.aidsVerificationDocs?.passportSizePhotoURL)
-            .fit().centerCrop()
-            .into(binding.passportSizeImage)
-
-        Picasso.get()
-            .load(userObject.aidsVerificationDocs?.incomeTaxCertificateUrl)
-            .fit().centerCrop()
-            .into(binding.incomeCertificate)
-
-        Picasso.get()
-            .load(userObject.aidsVerificationDocs?.identityProofUrl)
-            .fit().centerCrop()
-            .into(binding.identityProof)
-
-        Picasso.get()
-            .load(userObject.aidsVerificationDocs?.addressProofUrl)
-            .fit().centerCrop()
-            .into(binding.addressProof)
+//        Picasso.get()
+//            .load(userObject.aidsVerificationDocs?.disabilityCertificateURL)
+//            .fit().centerCrop()
+//            .into(binding.disabilityCertificateImage)
+//
+//        Picasso.get()
+//            .load(userObject.aidsVerificationDocs?.passportSizePhotoURL)
+//            .fit().centerCrop()
+//            .into(binding.passportSizeImage)
+//
+//        Picasso.get()
+//            .load(userObject.aidsVerificationDocs?.incomeTaxCertificateUrl)
+//            .fit().centerCrop()
+//            .into(binding.incomeCertificate)
+//
+//        Picasso.get()
+//            .load(userObject.aidsVerificationDocs?.identityProofUrl)
+//            .fit().centerCrop()
+//            .into(binding.identityProof)
+//
+//        Picasso.get()
+//            .load(userObject.aidsVerificationDocs?.addressProofUrl)
+//            .fit().centerCrop()
+//            .into(binding.addressProof)
     }
 
     private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {

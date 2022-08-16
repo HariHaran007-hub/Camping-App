@@ -78,6 +78,9 @@ dependencies {
     //Rounded image view for view pager
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
+    //Multiple selection spinner
+    implementation 'com.github.pratikbutani:MultiSelectSpinner:1.0.1'
+
     //API calls
     def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"

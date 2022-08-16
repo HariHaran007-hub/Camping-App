@@ -17,11 +17,17 @@ class Constants {
 
         const val UDID_NO_LIST = "udidNoList"
 
+        const val AIDS_DATA = "aidsData"
+
         //Shared preference
         const val SHARED_PREF = "shared_pref"
         const val STATE = "state"
         const val DISTRICT = "district"
         const val CAMPING_NAME = "camping_name"
         const val CAMP_ID = "camp_id"
+
+
+
+
     }
 }

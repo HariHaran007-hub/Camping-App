@@ -12,6 +12,13 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="google_map_key">AIzaSyDEVkA18stLc2gjFLO59Pt_-jKp2a2xesY</string>
 
+    <string-array name="array_disability_category">
+        <item>Select disability category</item>
+        <item>Orthopedic disability</item>
+        <item>Visual disability</item>
+        <item>Hearing disability</item>
+        <item>Mentally and multiple disability</item>
+    </string-array>
 
     <string-array name="array_indian_states">
         <item>Select Your State</item>

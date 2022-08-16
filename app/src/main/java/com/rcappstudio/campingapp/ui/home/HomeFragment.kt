@@ -37,6 +37,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.rcappstudio.adip.notifications.NotificationData
 import com.rcappstudio.adip.notifications.PushNotification
 import com.rcappstudio.adip.notifications.RetrofitInstance
+import com.rcappstudio.campingapp.data.model.AidsData
 import com.rcappstudio.campingapp.data.model.CampingModel
 import com.rcappstudio.campingapp.data.model.UserModel
 import com.rcappstudio.campingapp.data.model.VerifiedUserData
@@ -93,6 +94,7 @@ class HomeFragment : Fragment() {
         binding.bottomSheet.mapView.onCreate(savedInstanceState)
         clickListener()
         fetchVerifiedUserId()
+        //addAidsData()
     }
 
     private fun init(){
@@ -114,6 +116,12 @@ class HomeFragment : Fragment() {
             }
 
         })
+    }
+
+    private fun addAidsData(){
+
+//        FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/${Constants.AIDS_DATA}")
+//            .setValue(AidsData())
     }
 
     private fun mapPermissionChecker() {
@@ -276,10 +284,10 @@ class HomeFragment : Fragment() {
                             calculateStatisticalData()
 
                         }
-                        Log.d(
-                            "TAG",
-                            "extractIndividualDetails: ${user!!.aidsVerificationDocs!!.addressProofUrl}"
-                        )
+//                        Log.d(
+//                            "TAG",
+//                            "extractIndividualDetails: ${user!!.aidsVerificationDocs!!.addressProofUrl}"
+//                        )
                         loadingDialog.isDismiss()
                     }else{
                         //TODO: no data
@@ -291,19 +299,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun calculateStatisticalData() {
-        var received = 0
-        var notReceived = 0
-        for (c in userList) {
-            if (c.requestStatus?.aidsReceived!!)
-                received++
-            else {
-                notReceived++
-                aidsNotReceivedLUserList.add(c)
-            }
-        }
+//        var received = 0
+//        var notReceived = 0
+//        for (c in userList) {
+//            if (c.requestStatus?.aidsReceived!!)
+//                received++
+//            else {
+//                notReceived++
+//                aidsNotReceivedLUserList.add(c)
+//            }
+//        }
 
-        binding.received.text = "No of applicants received aids: $received"
-        binding.notReceived.text = "No of applicants not received aids: $notReceived"
+//        binding.received.text = "No of applicants received aids: $received"
+//        binding.notReceived.text = "No of applicants not received aids: $notReceived"
     }
 
     private fun clickListener() {
@@ -325,12 +333,16 @@ class HomeFragment : Fragment() {
 
         binding.bottomSheet.llRoot.setOnClickListener {
 
-            val state = if(bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
-                BottomSheetBehavior.STATE_COLLAPSED else{
-                    setUpMap()
-                    BottomSheetBehavior.STATE_EXPANDED
-            }
+            val state = if(bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED){
+                binding.rvVerifiedUsers.visibility = View.VISIBLE
+                BottomSheetBehavior.STATE_COLLAPSED
 
+            }
+                 else{
+                    setUpMap()
+                binding.rvVerifiedUsers.visibility = View.INVISIBLE
+                BottomSheetBehavior.STATE_EXPANDED
+            }
             bottomSheetBehavior.state = state
         }
 

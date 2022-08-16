@@ -41,17 +41,17 @@ class VerifiedUsersAdapter(
         val user = verifiedUserList[position]
 
         binding.name.text = "Name: "+ user.name
-        binding.appliedOn.text = "Applied on: "+ getDateTime(user.requestStatus?.appliedOnTimeStamp!!)
+       // binding.appliedOn.text = "Applied on: "+ getDateTime(user.requestStatus?.appliedOnTimeStamp!!)
 
         binding.udidNo.text ="Udid no: " + user.udidNo
 
-        if(user.requestStatus.aidsReceived!!){
-            binding.dateOfBirth.text = "Status: Aids received"
-            binding.cardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.greenLight))
-        } else{
-            binding.dateOfBirth.text = "Status: Aids not received"
-            binding.cardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.redLight))
-        }
+//        if(user.requestStatus.aidsReceived!!){
+//            binding.dateOfBirth.text = "Status: Aids received"
+//            binding.cardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.greenLight))
+//        } else{
+//            binding.dateOfBirth.text = "Status: Aids not received"
+//            binding.cardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.redLight))
+//        }
 
 
         Picasso

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     app:behavior_hideable="false"
     android:background="@color/white"
+    android:backgroundTint="@color/white"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheet"
     app:behavior_peekHeight = "@dimen/_40sdp"
@@ -16,7 +17,8 @@
         android:layout_width="match_parent"
         app:cardCornerRadius="@dimen/_40sdp"
         app:cardElevation="@dimen/_30sdp"
-        app:cardBackgroundColor="@color/white"
+
+        app:cardBackgroundColor="@color/pinkFaded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

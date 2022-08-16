@@ -100,7 +100,6 @@ private var _binding: FragmentSearchUdidBinding? = null
                     Log.d("userData", "no data exist ")
                     loadingDialog.isDismiss()
 
-
                 }
 
             }
@@ -128,9 +127,9 @@ private var _binding: FragmentSearchUdidBinding? = null
 
         binding.userCardView.visibility = View.VISIBLE
 
-        if(userData.requestStatus!!.aidsReceived!!){
-            binding.userCardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.greenLight))
-        }
+//        if(userData.requestStatus!!.aidsReceived!!){
+//            binding.userCardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.greenLight))
+//        }
 
         Picasso.get()
             .load(userData.profileImageUrl)
@@ -140,7 +139,7 @@ private var _binding: FragmentSearchUdidBinding? = null
         binding.userName.text = "Name: "+ userData.name
         binding.mobileNumber.text = "Numbmer: "+ userData.mobileNo
         binding.dateOfBirth.text = "Date of birth: "+ userData.dateOfBirth
-        binding.appliedOn.text = "Applied on: "+ getDateTime(userData.requestStatus?.appliedOnTimeStamp!!)
+       // binding.appliedOn.text = "Applied on: "+ getDateTime(userData.requestStatus?.appliedOnTimeStamp!!)
 
         binding.userCardView.setOnClickListener {
             val str = Gson().toJson(userData)

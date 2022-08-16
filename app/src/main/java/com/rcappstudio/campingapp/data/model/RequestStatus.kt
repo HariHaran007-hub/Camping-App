@@ -1,11 +1,13 @@
 package com.rcappstudio.campingapp.data.model
 
 data class RequestStatus(
-    val aidsList: List<String> ?= null,
-    val aidsReceived : Boolean ?= false,
-    val appliedOnTimeStamp : Long ?= 0,
-    var latLng : LatLng?= null,
-    val message : String ?= null,
-    val notAppropriate : Boolean ?= null
-
+    var verified : Boolean = false,
+    var notAppropriate : Boolean = false,
+    var message : String ?= null,
+//    var latLng : LatLng ?= null,
+    var aidsReceived : Boolean = false,
+    var appliedOnTimeStamp  :Long ?= 0,
+    var ngoList : HashMap<String , NgoData> ?= null,
+    var aidsList : List<String> ?= null,
+    var incomeCertificate : String ?= null
 )
