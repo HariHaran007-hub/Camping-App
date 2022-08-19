@@ -20,8 +20,8 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
 <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
@@ -71,55 +71,56 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="@dimen/_14ssp">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:visibility="invisible"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="@dimen/_10sdp"-->
+<!--                app:cardBackgroundColor="@color/white"-->
+<!--                app:cardElevation="@dimen/_14ssp">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="@dimen/_5sdp">-->
 
-                    <TextView
-                        android:id="@+id/received"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="8"
-                        android:fontFamily="@font/mplus_rounded_1c_bold"
-                        android:padding="@dimen/_2sdp"
-                        android:text="No of applicants received aids: 0"
-                        android:textAlignment="center"
-                        android:textColor="#07A628"
-                        android:textSize="@dimen/_12ssp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/received"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:ems="8"-->
+<!--                        android:fontFamily="@font/mplus_rounded_1c_bold"-->
+<!--                        android:padding="@dimen/_2sdp"-->
+<!--                        android:text="No of applicants received aids: 0"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="#07A628"-->
+<!--                        android:textSize="@dimen/_12ssp" />-->
 
-                    <View
+<!--                    <View-->
 
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:layout_marginBottom="@dimen/_2sdp"
-                        android:background="@color/black" />
+<!--                        android:layout_width="1dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="@dimen/_2sdp"-->
+<!--                        android:layout_marginBottom="@dimen/_2sdp"-->
+<!--                        android:background="@color/black" />-->
 
-                    <TextView
-                        android:id="@+id/notReceived"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="8"
-                        android:fontFamily="@font/mplus_rounded_1c_bold"
-                        android:padding="@dimen/_2sdp"
-                        android:text="No of applicants not received aids: 0"
-                        android:textAlignment="center"
-                        android:textColor="@color/red"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/notReceived"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:ems="8"-->
+<!--                        android:fontFamily="@font/mplus_rounded_1c_bold"-->
+<!--                        android:padding="@dimen/_2sdp"-->
+<!--                        android:text="No of applicants not received aids: 0"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@color/red"-->
+<!--                        android:textSize="@dimen/_12ssp" />-->
+<!--                </LinearLayout>-->
 
 
-            </androidx.cardview.widget.CardView>
+<!--            </androidx.cardview.widget.CardView>-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvVerifiedUsers"
@@ -131,8 +132,21 @@
                 tools:listitem="@layout/item_user" />
 
 
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scanUdidCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_400sdp"
+            android:src="@drawable/ic_menu_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
 

@@ -102,22 +102,46 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Aids allocated: "
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp"/>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            app:cardMaxElevation="0dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            android:id="@+id/statusAidsList"
 
-        <TextView
-            android:id="@+id/tvAidsList"
-            android:layout_width="wrap_content"
+            app:strokeColor="@color/green"
+            app:cardBackgroundColor="@color/greenLight"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14ssp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/mplus_rounded_1c_regular"
-            android:text="\t\t\t\t\t\t1)Hearing aid\n\t\t\t\t\t\t2)Educational aid"/>
+            >
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAidsAllocated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aids allocated: "
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"/>
+
+
+                <TextView
+                    android:id="@+id/tvAidsList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14ssp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:text="\t\t\t\t\t\t1)Hearing aid\n\t\t\t\t\t\t2)Educational aid"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deliveryButton"

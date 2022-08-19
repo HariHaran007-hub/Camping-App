@@ -82,6 +82,8 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_10sdp"
             android:visibility="visible"
+            app:cardMaxElevation="0dp"
+            app:cardElevation="0dp"
             app:cardBackgroundColor="@color/redLight"
             app:strokeColor="@color/red"
             app:strokeWidth="1dp">
@@ -101,6 +103,33 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/aidsTextCardView"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            app:cardMaxElevation="0dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/greenLight"
+            app:strokeColor="@color/green"
+            app:strokeWidth="@dimen/_1sdp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvAidsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:text="Aids applied for: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/notifyUser"
             android:layout_width="match_parent"
@@ -109,17 +138,6 @@
             android:background="@drawable/bg_button_enabled"
             android:text="Notify user"
             android:textColor="@color/white" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:fontFamily="@font/mplus_rounded_1c_regular"
-            android:text="Aids applied for: "
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp" />
-
 
 
 

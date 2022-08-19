@@ -6,11 +6,14 @@
     android:layout_margin="@dimen/_5sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
+        app:cardMaxElevation="0dp"
+        app:cardElevation="0dp"
         android:layout_width="match_parent"
         app:strokeWidth="1dp"
-        app:cardBackgroundColor="@color/greenLight"
+        app:cardBackgroundColor="@color/white"
+        app:strokeColor="@color/black"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -70,7 +73,7 @@
                     android:textColor="@color/black" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 
 

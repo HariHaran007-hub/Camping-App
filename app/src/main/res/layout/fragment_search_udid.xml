@@ -21,13 +21,16 @@
         android:queryBackground="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:visibility="gone"
         android:layout_height="wrap_content"
         android:id="@+id/userCardView"
         android:layout_margin="@dimen/_10sdp"
-        app:cardBackgroundColor="@color/redLight"
+        app:cardMaxElevation="0dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp"
+        app:cardBackgroundColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/searchView">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -96,6 +99,6 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

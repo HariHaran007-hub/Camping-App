@@ -7,7 +7,7 @@ data class RequestStatus(
 //    var latLng : LatLng ?= null,
     var aidsReceived : Boolean = false,
     var appliedOnTimeStamp  :Long ?= 0,
-    var ngoList : HashMap<String , NgoData> ?= null,
+    val ngoList : HashMap<String , NgoData> ?= null,
     var aidsList : List<String> ?= null,
     var incomeCertificate : String ?= null
 )

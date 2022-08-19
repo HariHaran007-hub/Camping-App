@@ -39,6 +39,8 @@ private lateinit var binding: ActivityMainBinding
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+//        FirebaseDatabase.getInstance().getReference()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -2,6 +2,7 @@ package com.rcappstudio.campingapp.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -108,6 +109,7 @@ class UserDetailsActivity : AppCompatActivity() {
                             }
                         }
                 } else{
+                    Toast.makeText(applicationContext, "No data present!!" , Toast.LENGTH_LONG).show()
 //                    Log.d("campID", "fetchRequiredData: no data!!")
                 }
             }
@@ -130,7 +132,7 @@ class UserDetailsActivity : AppCompatActivity() {
         val currentCampList = mutableListOf<NgoData>()
 
         for(requestStatus in requestStatusList){
-            if(requestStatus.ngoList != null){
+            if(requestStatus.ngoList != null && requestStatus.verified){
                 generalCampAllocatedList.addAll(requestStatus.ngoList!!.values.toMutableList())
             }
         }
@@ -145,6 +147,9 @@ class UserDetailsActivity : AppCompatActivity() {
 
     private fun populateData(campList : MutableList<NgoData>){
         //Checking weather all aids of particular ngo is received or not
+        //campList is the filtered current camp list
+        var flagReceived = 0
+        var flagNotReceived = 0
 
         for(c in campList){
             if(!c.aidsReceived!!){
@@ -152,13 +157,13 @@ class UserDetailsActivity : AppCompatActivity() {
                 break
             } else{
                 changeReceivedView()
-                break
             }
         }
 
         var aidsNames = "\t\t\t\t\t\t"
         var count = 0
         var aidsToBeReceived = mutableListOf<String>()
+        val aidsAlreadyReceived = mutableListOf<String>()
         for(c in campList){
             if(!c.aidsReceived!!){
                 for(aid in c.aidsList!!){
@@ -167,8 +172,29 @@ class UserDetailsActivity : AppCompatActivity() {
                     aidsNames += "$count)$aid\n\t\t\t\t\t\t"
                 }
             } else{
-                //TODO: Yet to add just display data
+                flagReceived++
+                for (aid in c.aidsList!!){
+                    aidsAlreadyReceived.add(aid)
+                }
             }
+        }
+
+        if(flagReceived == campList.size){
+            //TODO need to hide aids delevery
+            Toast.makeText(applicationContext , "All aids are delivered to the user", Toast.LENGTH_LONG).show()
+            binding.tvAidsAllocated.visibility = View.INVISIBLE
+            binding.deliveryButton.visibility = View.INVISIBLE
+            binding.aidsDeliveryTextView.text = "Aids/Appliance received"
+            binding.statusAidsList.strokeColor = ContextCompat.getColor(applicationContext, R.color.green)
+            binding.statusAidsList.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.greenLight))
+
+
+
+            Log.d("dataChecker", "populateData: all aids are received")
+        } else {
+            binding.aidsDeliveryTextView.text = "Aids/Appliance not received"
+            binding.statusAidsList.strokeColor = ContextCompat.getColor(applicationContext, R.color.red)
+            binding.statusAidsList.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.redLight))
         }
         binding.tvAidsList.text = aidsNames
 
@@ -189,7 +215,9 @@ class UserDetailsActivity : AppCompatActivity() {
                         if(it.exists()){
                             var newValue = it.value.toString().toInt() - 1
                             FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName.snakeToLowerCamelCase()}")
-                                .setValue(newValue)
+                                .setValue(newValue).addOnSuccessListener {
+                                    finish()
+                                }
                         }
                     }
             }
@@ -218,25 +246,11 @@ class UserDetailsActivity : AppCompatActivity() {
                                 }
                         }
                     }
-
-
                 }
 
         } else{
             Toast.makeText(applicationContext, "Allocated aids are deleveried", Toast.LENGTH_LONG).show()
         }
-
-
-//        FirebaseDatabase.getInstance().getReference("${Constants.USERS}/Telangana/Adilabad/$userId/requestStatus")
-//            .get().addOnSuccessListener { snapshot->
-//                if(snapshot.exists()){
-//                    for(s in snapshot.children){
-//                        if()
-//                    }
-//                }
-//
-//            }
-
     }
 
     private fun changeNotReceivedView(){
@@ -259,6 +273,6 @@ class UserDetailsActivity : AppCompatActivity() {
             )
             binding.aidsDeliveryCardView.strokeColor =
                 ContextCompat.getColor(applicationContext, R.color.green)
-            binding.aidsDeliveryTextView.text = "Aids/Appliance"
+            binding.aidsDeliveryTextView.text = "Aids/Appliance received"
     }
 }

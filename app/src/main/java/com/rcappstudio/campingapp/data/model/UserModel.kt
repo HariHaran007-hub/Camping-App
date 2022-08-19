@@ -11,6 +11,6 @@ data class UserModel(
     var alreadyApplied : Boolean = false,
     var fcmToken : String ?= null,
     val profileImageUrl : String ?= null,
-   // val requestStatus: RequestStatus?= null
+    val requestStatus: HashMap<String, RequestStatus>?= null
 
 )
