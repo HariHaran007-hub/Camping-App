@@ -446,7 +446,6 @@ class HomeFragment : Fragment() {
                         setAspectRatio(4,3)
                         setAutoZoomEnabled(true)
                         setFixAspectRatio(true)
-                        setFixAspectRatio(true)
                         setScaleType(CropImageView.ScaleType.CENTER_CROP)
                          })
                 }
@@ -530,6 +529,7 @@ class HomeFragment : Fragment() {
 
     private fun imageProcess(uri: Uri?) {
         udidDataList.clear()
+        loadingDialog.startLoading()
         var bitmap: Bitmap? = null
         try {
 
@@ -579,6 +579,7 @@ class HomeFragment : Fragment() {
 
     private fun fetchDataFromDatabase(udidNumber: String) {
         //TODO: Making it and input id
+        loadingDialog.message = "Loading user details"
         loadingDialog.startLoading()
         FirebaseDatabase.getInstance().getReference("udidNoList/${udidNumber}")
             .get()

@@ -5,7 +5,7 @@ import android.app.AlertDialog
 import android.widget.TextView
 import com.rcappstudio.campingapp.R
 
-class LoadingDialog(val mActivity : Activity , val message : String?) {
+class LoadingDialog(val mActivity : Activity , var message : String?) {
 
     private lateinit var isdialog : AlertDialog
     private lateinit var textView : TextView

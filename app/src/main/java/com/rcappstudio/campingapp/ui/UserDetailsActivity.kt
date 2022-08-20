@@ -16,6 +16,7 @@ import com.rcappstudio.campingapp.data.model.RequestStatus
 import com.rcappstudio.campingapp.data.model.UdidReferenceModel
 import com.rcappstudio.campingapp.data.model.UserModel
 import com.rcappstudio.campingapp.databinding.ActivityUserDetailsBinding
+import com.rcappstudio.campingapp.utils.LoadingDialog
 import com.rcappstudio.campingapp.utils.getDateTime
 import com.rcappstudio.campingapp.utils.snakeToLowerCamelCase
 import com.squareup.picasso.Picasso
@@ -24,6 +25,8 @@ import com.squareup.picasso.Picasso
 class UserDetailsActivity : AppCompatActivity() {
 
     private lateinit var userObject: UserModel
+
+    private lateinit var loadingDialog: LoadingDialog
 
     private lateinit var binding: ActivityUserDetailsBinding
 
@@ -37,6 +40,7 @@ class UserDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserDetailsBinding.inflate(layoutInflater)
+        loadingDialog = LoadingDialog(this, "Loading user details please wait!!")
         setContentView(binding.root)
         val sharedPref = getSharedPreferences(Constants.SHARED_PREF, MODE_PRIVATE)
         campId = sharedPref.getString(Constants.CAMP_ID ,null)!!
@@ -85,7 +89,7 @@ class UserDetailsActivity : AppCompatActivity() {
     }
 
     private fun fetchRequiredData() {
-
+        loadingDialog.startLoading()
         var requestStatusList = mutableListOf<RequestStatus>()
         FirebaseDatabase.getInstance()
            // .getReference("${Constants.UDID_NO_LIST}/${userObject.udidNo}")
@@ -104,6 +108,7 @@ class UserDetailsActivity : AppCompatActivity() {
                                     requestStatusKeys.add(snap.key!!)
                                     val requestStatus = snap.getValue(RequestStatus::class.java)
                                     requestStatusList.add(requestStatus!!)
+                                    loadingDialog.isDismiss()
                                 }
                                 filteredCampData(requestStatusList)
                             }
@@ -181,22 +186,32 @@ class UserDetailsActivity : AppCompatActivity() {
 
         if(flagReceived == campList.size){
             //TODO need to hide aids delevery
+            var count2 = 0
+            var aidsNames2 = ""
+            Log.d("aidsData", "populateData: ${aidsAlreadyReceived.size}")
+
             Toast.makeText(applicationContext , "All aids are delivered to the user", Toast.LENGTH_LONG).show()
-            binding.tvAidsAllocated.visibility = View.INVISIBLE
+//            binding.tvAidsAllocated.visibility = View.INVISIBLE
             binding.deliveryButton.visibility = View.INVISIBLE
+            binding.tvAidsList.visibility = View.VISIBLE
             binding.aidsDeliveryTextView.text = "Aids/Appliance received"
             binding.statusAidsList.strokeColor = ContextCompat.getColor(applicationContext, R.color.green)
             binding.statusAidsList.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.greenLight))
 
-
+            for(aid in aidsAlreadyReceived){
+                count2++
+                aidsNames2 += "\t\t\t\t\t\t$count2)$aid\n"
+            }
+            binding.tvAidsList.text = aidsNames2
 
             Log.d("dataChecker", "populateData: all aids are received")
         } else {
             binding.aidsDeliveryTextView.text = "Aids/Appliance not received"
             binding.statusAidsList.strokeColor = ContextCompat.getColor(applicationContext, R.color.red)
             binding.statusAidsList.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.redLight))
+            binding.tvAidsList.text = aidsNames
         }
-        binding.tvAidsList.text = aidsNames
+
 
 //        Log.d("campList", "fetchRequiredData: ${aidsToBeReceived.size}")
         binding.deliveryButton.setOnClickListener {
@@ -208,6 +223,7 @@ class UserDetailsActivity : AppCompatActivity() {
     private fun updateDatabase(aidsToBeDelivered: MutableList<String>){
 
         //TODO: Yet to do out of stock module and to hide the delivery button
+        loadingDialog.startLoading()
         if(aidsToBeDelivered.isNotEmpty()){
             for (aidName in aidsToBeDelivered){
                 FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName.snakeToLowerCamelCase()}")
@@ -216,7 +232,8 @@ class UserDetailsActivity : AppCompatActivity() {
                             var newValue = it.value.toString().toInt() - 1
                             FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName.snakeToLowerCamelCase()}")
                                 .setValue(newValue).addOnSuccessListener {
-                                    finish()
+                                    loadingDialog.isDismiss()
+
                                 }
                         }
                     }
