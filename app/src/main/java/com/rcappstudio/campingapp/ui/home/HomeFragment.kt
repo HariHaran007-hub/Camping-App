@@ -580,7 +580,7 @@ class HomeFragment : Fragment() {
     private fun fetchDataFromDatabase(udidNumber: String) {
         //TODO: Making it and input id
         loadingDialog.message = "Loading user details"
-        loadingDialog.startLoading()
+//        loadingDialog.startLoading()
         FirebaseDatabase.getInstance().getReference("udidNoList/${udidNumber}")
             .get()
             .addOnSuccessListener { snapshot ->

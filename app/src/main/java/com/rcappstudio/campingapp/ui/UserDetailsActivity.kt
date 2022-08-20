@@ -223,7 +223,6 @@ class UserDetailsActivity : AppCompatActivity() {
     private fun updateDatabase(aidsToBeDelivered: MutableList<String>){
 
         //TODO: Yet to do out of stock module and to hide the delivery button
-        loadingDialog.startLoading()
         if(aidsToBeDelivered.isNotEmpty()){
             for (aidName in aidsToBeDelivered){
                 FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName.snakeToLowerCamelCase()}")
@@ -232,8 +231,7 @@ class UserDetailsActivity : AppCompatActivity() {
                             var newValue = it.value.toString().toInt() - 1
                             FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName.snakeToLowerCamelCase()}")
                                 .setValue(newValue).addOnSuccessListener {
-                                    loadingDialog.isDismiss()
-
+                                   binding.deliveryButton.visibility = View.GONE
                                 }
                         }
                     }

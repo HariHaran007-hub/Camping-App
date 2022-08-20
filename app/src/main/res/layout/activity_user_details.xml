@@ -13,32 +13,51 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_8sdp"
-            android:orientation="horizontal">
+            android:text="Beneficiary Details"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:fontFamily="@font/mplus_rounded_1c_bold"
+            android:textSize="@dimen/_20ssp"
+            android:padding="@dimen/_10sdp"/>
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/profileIage"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_120sdp"
                 android:padding="@dimen/_5sdp"
+                app:riv_border_width="1dp"
+                app:riv_border_color="@color/black"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_gravity="center_horizontal"
                 android:src="@drawable/no_profile"
                 app:riv_corner_radius="@dimen/_8sdp" />
 
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_gravity="center"
                 android:orientation="vertical"
                 android:padding="@dimen/_5sdp">
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:fontFamily="@font/mplus_rounded_1c_bold"
                     android:text="Name : R.C.Hari Haran"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
@@ -49,32 +68,38 @@
                     android:id="@+id/appliedOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
+
+                    android:fontFamily="@font/mplus_rounded_1c_bold"
                     android:text="Applied on: 2/07/2022"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/mobileNo"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:padding="@dimen/_5sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_bold"
                     android:text="Mobile no: 8838387219"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/dob"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:padding="@dimen/_5sdp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/mplus_rounded_1c_bold"
                     android:text="DOB: 2/02/2003"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+
 
 
         <com.google.android.material.card.MaterialCardView
@@ -125,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aids allocated: "
-                    android:padding="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16ssp"/>
 
