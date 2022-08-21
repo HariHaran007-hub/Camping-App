@@ -46,7 +46,6 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_gravity="center"
                 android:orientation="vertical"
                 android:padding="@dimen/_5sdp">
@@ -102,7 +101,7 @@
 
 
 
-        <com.google.android.material.card.MaterialCardView
+        +<com.google.android.material.card.MaterialCardView
             android:id="@+id/aidsDeliveryCardView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -110,7 +109,7 @@
             android:visibility="visible"
             app:cardMaxElevation="0dp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/redLight"
+            app:cardBackgroundColor="@color/white"
             app:strokeColor="@color/red"
             app:strokeWidth="1dp">
 

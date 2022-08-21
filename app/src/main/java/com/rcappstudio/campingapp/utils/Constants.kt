@@ -25,6 +25,7 @@ class Constants {
         const val DISTRICT = "district"
         const val CAMPING_NAME = "camping_name"
         const val CAMP_ID = "camp_id"
+        const val CAMP_EMAIL = "camp_email"
 
 
 

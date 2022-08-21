@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/navLLRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -22,6 +23,7 @@
         android:id="@+id/imageView" />
 
     <TextView
+        android:id="@+id/campName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -36,5 +38,5 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/mplus_rounded_1c_regular"
         android:text="ngoadminpanel@gmail.com"
-        android:id="@+id/textView" />
+        android:id="@+id/campGmail" />
 </LinearLayout>

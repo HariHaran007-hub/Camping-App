@@ -59,6 +59,8 @@ class LoginActivity : AppCompatActivity() {
             putString(Constants.CAMPING_NAME, camp.campingName.toString())
             putString(Constants.DISTRICT , camp.district)
             putString(Constants.CAMP_ID, camp.campId)
+            putString(Constants.CAMP_EMAIL , camp.emailId)
+
         }.apply()
         startActivity(Intent(this , MainActivity::class.java))
         finish()

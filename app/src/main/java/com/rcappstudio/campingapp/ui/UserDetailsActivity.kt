@@ -158,10 +158,10 @@ class UserDetailsActivity : AppCompatActivity() {
 
         for(c in campList){
             if(!c.aidsReceived!!){
-                changeNotReceivedView()
+                //changeNotReceivedView()
                 break
             } else{
-                changeReceivedView()
+//                changeReceivedView()
             }
         }
 
@@ -195,19 +195,31 @@ class UserDetailsActivity : AppCompatActivity() {
             binding.deliveryButton.visibility = View.INVISIBLE
             binding.tvAidsList.visibility = View.VISIBLE
             binding.aidsDeliveryTextView.text = "Aids/Appliance received"
+            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext, R.color.green)
+            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.greenLight))
             binding.statusAidsList.strokeColor = ContextCompat.getColor(applicationContext, R.color.green)
             binding.statusAidsList.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.greenLight))
 
-            for(aid in aidsAlreadyReceived){
-                count2++
-                aidsNames2 += "\t\t\t\t\t\t$count2)$aid\n"
-            }
-            binding.tvAidsList.text = aidsNames2
+            if(aidsAlreadyReceived.isNotEmpty()){
+                for(aid in aidsAlreadyReceived){
+                    count2++
+                    aidsNames2 += "\t\t\t\t\t\t$count2)$aid\n"
 
-            Log.d("dataChecker", "populateData: all aids are received")
+                }
+                binding.tvAidsList.text = aidsNames2
+
+            }else{
+                binding.aidsDeliveryTextView.text = "No aids were allocated in this camp"
+                binding.statusAidsList.visibility = View.INVISIBLE
+                binding.tvAidsList.visibility = View.INVISIBLE
+            }
+
+
         } else {
             binding.aidsDeliveryTextView.text = "Aids/Appliance not received"
             binding.statusAidsList.strokeColor = ContextCompat.getColor(applicationContext, R.color.red)
+            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext, R.color.red)
+            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.redLight))
             binding.statusAidsList.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.redLight))
             binding.tvAidsList.text = aidsNames
         }
