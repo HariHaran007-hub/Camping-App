@@ -116,7 +116,7 @@ class HomeUserDetailsActivity : AppCompatActivity() {
         val currentCampList = mutableListOf<NgoData>()
 
         for(requestStatus in requestStatusList){
-            if(requestStatus.ngoList != null && requestStatus.verified){
+            if(requestStatus.ngoList != null && requestStatus.documentVerified!!){
                 generalCampAllocatedList.addAll(requestStatus.ngoList!!.values.toMutableList())
             }
         }
@@ -137,10 +137,10 @@ class HomeUserDetailsActivity : AppCompatActivity() {
 
         for(c in campList){
             if(!c.aidsReceived!!){
-                changeNotReceivedView()
+                //changeNotReceivedView()
                 break
             } else{
-                changeReceivedView()
+                //changeReceivedView()
             }
         }
 
@@ -164,19 +164,42 @@ class HomeUserDetailsActivity : AppCompatActivity() {
         }
 
         if(flagReceived == campList.size){
-            //TODO need to hide aids delevery
+
             var count2 = 0
-            var aidsNames2 = "Aids received: \n\t\t\t\t\t\t"
-            binding.aidsTextCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.greenLight))
+            var aidsNames2 = ""
+            Log.d("aidsData", "populateData: ${aidsAlreadyReceived.size}")
+
+            Toast.makeText(applicationContext , "All aids are delivered to the user", Toast.LENGTH_LONG).show()
+//            binding.tvAidsAllocated.visibility = View.INVISIBLE
+            binding.tvAidsList.visibility = View.VISIBLE
+            binding.aidsDeliveryTextView.text = "Aids/Appliance received"
+            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext, R.color.green)
+            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.greenLight))
             binding.aidsTextCardView.strokeColor = ContextCompat.getColor(applicationContext, R.color.green)
-            Toast.makeText(applicationContext , "No request pending!!", Toast.LENGTH_LONG).show()
-            for(aid in aidsAlreadyReceived){
-                count2++
-                aidsNames2 += "$count2)$aid\n\t\t\t\t\t\t"
+            binding.aidsTextCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.greenLight))
+
+            if(aidsAlreadyReceived.isNotEmpty()){
+                for(aid in aidsAlreadyReceived){
+                    count2++
+                    aidsNames2 += "\t\t\t\t\t\t$count2)$aid\n"
+
+                }
+                binding.tvAidsList.text = aidsNames2
+
+            }else{
+                binding.aidsDeliveryTextView.text = "No aids were allocated in this camp"
+                binding.aidsTextCardView.visibility = View.INVISIBLE
+                binding.tvAidsList.visibility = View.INVISIBLE
+                binding.notifyUser.visibility = View.INVISIBLE
             }
-            binding.tvAidsList.text = aidsNames2
 
         } else {
+//
+            binding.aidsDeliveryTextView.text = "Aids/Appliance not received"
+            binding.aidsTextCardView.strokeColor = ContextCompat.getColor(applicationContext, R.color.red)
+            binding.aidsDeliveryCardView.strokeColor = ContextCompat.getColor(applicationContext, R.color.red)
+            binding.aidsDeliveryCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.redLight))
+            binding.aidsTextCardView.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.redLight))
             binding.tvAidsList.text = aidsNames
         }
     }
@@ -220,5 +243,7 @@ class HomeUserDetailsActivity : AppCompatActivity() {
             ContextCompat.getColor(applicationContext, R.color.green)
         binding.aidsDeliveryTextView.text = "Aids/Appliance"
     }
+
+
 
 }

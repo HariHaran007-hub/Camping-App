@@ -11,15 +11,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import com.rcappstudio.campingapp.utils.Constants
 import com.rcappstudio.campingapp.R
-import com.rcappstudio.campingapp.data.model.NgoData
-import com.rcappstudio.campingapp.data.model.RequestStatus
-import com.rcappstudio.campingapp.data.model.UdidReferenceModel
-import com.rcappstudio.campingapp.data.model.UserModel
+import com.rcappstudio.campingapp.data.model.*
 import com.rcappstudio.campingapp.databinding.ActivityUserDetailsBinding
 import com.rcappstudio.campingapp.utils.LoadingDialog
 import com.rcappstudio.campingapp.utils.getDateTime
 import com.rcappstudio.campingapp.utils.snakeToLowerCamelCase
 import com.squareup.picasso.Picasso
+import java.util.*
 
 
 class UserDetailsActivity : AppCompatActivity() {
@@ -49,6 +47,7 @@ class UserDetailsActivity : AppCompatActivity() {
         userPath = Constants.USERS + "/" + userObject.state + "/" + userObject.district
 
         initView()
+        Log.d("dataSet", "updateDatabase: ${userObject.requestStatus!!.keys}")
         fetchRequiredData()
         Log.d("campID", "onCreate: $campId")
     }
@@ -135,9 +134,11 @@ class UserDetailsActivity : AppCompatActivity() {
 
         val generalCampAllocatedList = mutableListOf<NgoData>()
         val currentCampList = mutableListOf<NgoData>()
+        Log.d("tagData", "filteredCampData: $campId")
+
 
         for(requestStatus in requestStatusList){
-            if(requestStatus.ngoList != null && requestStatus.verified){
+            if(requestStatus.ngoList != null && requestStatus.documentVerified!!){
                 generalCampAllocatedList.addAll(requestStatus.ngoList!!.values.toMutableList())
             }
         }
@@ -147,6 +148,7 @@ class UserDetailsActivity : AppCompatActivity() {
                 currentCampList.add(camps)
             }
         }
+        Log.d("tagData", "filteredCampData: ${currentCampList.size}")
         populateData(currentCampList)
     }
 
@@ -169,6 +171,7 @@ class UserDetailsActivity : AppCompatActivity() {
         var count = 0
         var aidsToBeReceived = mutableListOf<String>()
         val aidsAlreadyReceived = mutableListOf<String>()
+        val currentCamp = mutableListOf<NgoData>()
         for(c in campList){
             if(!c.aidsReceived!!){
                 for(aid in c.aidsList!!){
@@ -234,21 +237,38 @@ class UserDetailsActivity : AppCompatActivity() {
 
     private fun updateDatabase(aidsToBeDelivered: MutableList<String>){
 
+        val sharedPref = getSharedPreferences(Constants.SHARED_PREF , MODE_PRIVATE)
+        val ngoId = sharedPref.getString(Constants.CAMP_ID, null)
         //TODO: Yet to do out of stock module and to hide the delivery button
         if(aidsToBeDelivered.isNotEmpty()){
             for (aidName in aidsToBeDelivered){
-                FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName.snakeToLowerCamelCase()}")
+                FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName}")
                     .get().addOnSuccessListener {
                         if(it.exists()){
                             var newValue = it.value.toString().toInt() - 1
-                            FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName.snakeToLowerCamelCase()}")
+                            FirebaseDatabase.getInstance().getReference("${Constants.CAMPING}/$campId/aidsData/${aidName}")
                                 .setValue(newValue).addOnSuccessListener {
                                    binding.deliveryButton.visibility = View.GONE
                                 }
                         }
                     }
             }
-
+            FirebaseDatabase.getInstance().getReference("aidsReceived")
+                .push().setValue(
+                    AidsReceivedModel(
+                        name= userObject.name,
+                        udidNo = userObject.udidNo,
+                        state = userObject.state,
+                        district = userObject.district,
+                        percentageOfDisability = userObject.percentageOfDisability,
+                        category = userObject.category,
+                        gender = userObject.gender,
+                        dob = userObject.dateOfBirth,
+                        aidsList = aidsToBeDelivered,
+                        ngoId = ngoId,
+                        deliveredOn = Calendar.getInstance().timeInMillis
+                    )
+                )
             for(aidName in aidsToBeDelivered){
                 FirebaseDatabase.getInstance().getReference("${Constants.USERS}/${userObject.state}/${userObject.district}/$userId/aidsApplied/${aidName.snakeToLowerCamelCase()}")
                     .setValue(true)
@@ -274,6 +294,12 @@ class UserDetailsActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+
+
+
+//            FirebaseDatabase.getInstance().getReference("aidsReceived")
+//                .setValue()
 
         } else{
             Toast.makeText(applicationContext, "Allocated aids are deleveried", Toast.LENGTH_LONG).show()

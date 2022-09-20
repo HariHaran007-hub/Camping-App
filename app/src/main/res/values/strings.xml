@@ -9,7 +9,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Search using UDID number</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_slideshow">Aids Stock Management</string>
     <string name="google_map_key">AIzaSyDEVkA18stLc2gjFLO59Pt_-jKp2a2xesY</string>
 
     <string-array name="array_disability_category">

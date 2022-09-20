@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
@@ -59,6 +60,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.FileDescriptor
 import java.io.IOException
+import java.util.*
 
 
 class HomeFragment : Fragment() {
@@ -114,6 +116,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = LoadingDialog(requireActivity(), "Loading Home page")
         init()
+        //checkDater()
         binding.bottomSheet.mapView.onCreate(savedInstanceState)
         clickListener()
         fetchVerifiedUserId()
@@ -141,27 +144,27 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun mapPermissionChecker() {
-        Dexter.withContext(requireContext())
-            .withPermissions(
-                android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            .withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
-                    //TODO: Fetch gps location
-                    fetchLocationDetails()
-                }
+        private fun mapPermissionChecker() {
+            Dexter.withContext(requireContext())
+                .withPermissions(
+                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+                .withListener(object : MultiplePermissionsListener {
+                    override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                        //TODO: Fetch gps location
+                        fetchLocationDetails()
+                    }
 
-                override fun onPermissionRationaleShouldBeShown(
-                    permissions: List<PermissionRequest?>?,
-                    token: PermissionToken?
-                ) {
-                    showRationalDialogForPermissions()
-                }
-            }).check()
+                    override fun onPermissionRationaleShouldBeShown(
+                        permissions: List<PermissionRequest?>?,
+                        token: PermissionToken?
+                    ) {
+                        showRationalDialogForPermissions()
+                    }
+                }).check()
 
-    }
+        }
 
     private fun showRationalDialogForPermissions() {
         AlertDialog.Builder(requireContext()).setMessage("Please enable the required permissions")
@@ -332,7 +335,6 @@ class HomeFragment : Fragment() {
                         loadingDialog.isDismiss()
                     } else {
                         //TODO: no data
-                        Toast.makeText(requireContext(), "No data!!", Toast.LENGTH_LONG).show()
                         loadingDialog.isDismiss()
                     }
                 }
@@ -376,9 +378,8 @@ class HomeFragment : Fragment() {
         aidsNotReceivedLUserList = mutableListOf()
         for (user in userList) {
             var flagNotReceived = 0
-
             for (singleRequest in user.requestStatus!!.values.toMutableList()) {
-                if (singleRequest.verified) {
+                if (singleRequest.documentVerified!!) {
                     for (l in singleRequest.ngoList!!.values.toMutableList()) {
                         if (!l.aidsReceived!! && l.ngoId == campId) {
                             flagNotReceived++
@@ -644,8 +645,22 @@ class HomeFragment : Fragment() {
             }
     }
 
+
+
     private fun isLetters(string: String): Boolean {
         return string.none { it !in 'A'..'Z' && it !in 'a'..'z' }
+    }
+
+    private fun checkDater(){
+        val timeStamp1 = 1661233360000 //8/23/2022
+        val timeStamp2 = 1661406160000 //8/25/2022
+        val timeStamp =1661319760000 //8/24/2022
+
+        if(timeStamp > timeStamp1 && timeStamp < timeStamp2){
+            Log.d("tagData", "checkDater: who!! crt")
+        } else {
+            Log.d("tagData", "checkDater: who!! wrong")
+        }
     }
 
 

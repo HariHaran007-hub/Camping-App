@@ -100,47 +100,47 @@ class SlideshowFragment : Fragment() {
         listOfAidsSelectedToUploadToDatabase = mutableListOf()
         orthopedicDisabilityList = mutableListOf()
         orthopedicDisabilityList.add(KeyPairBoolData("Tricycle", false))
-        orthopedicDisabilityList.add(KeyPairBoolData("Wheel chair(adult and child)", false))
-        orthopedicDisabilityList.add(KeyPairBoolData("Walking stick", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Wheel_chair(adult_and_child)", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Walking_stick", false))
         orthopedicDisabilityList.add(KeyPairBoolData("Rollator", false))
         orthopedicDisabilityList.add(KeyPairBoolData("Quadripod", false))
         orthopedicDisabilityList.add(KeyPairBoolData("Tetrapod", false))
-        orthopedicDisabilityList.add(KeyPairBoolData("Auxiliary crutches", false))
-        orthopedicDisabilityList.add(KeyPairBoolData("Elbow crutches", false))
-        orthopedicDisabilityList.add(KeyPairBoolData("CP chair", false))
-        orthopedicDisabilityList.add(KeyPairBoolData("Corner chair", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Auxiliary_crutches", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Elbow_crutches", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("CP_chair", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Corner_chair", false))
 
         visualDisabilityList = mutableListOf()
         visualDisabilityList.add(
             KeyPairBoolData(
-                "Accessible mobile phones, Laptop, Braille note taker , Brallier (school going students)",
+                "Accessible_mobile_phones,_Laptop,_Braille_note_taker_,_Brallier_(school_going_students)",
                 false
             )
         )
-        visualDisabilityList.add(KeyPairBoolData("Learning equipment", false))
-        visualDisabilityList.add(KeyPairBoolData("Communication equipment", false))
+        visualDisabilityList.add(KeyPairBoolData("Learning_equipment", false))
+        visualDisabilityList.add(KeyPairBoolData("Communication_equipment", false))
         visualDisabilityList.add(
             KeyPairBoolData(
-                "Braille attachment for telephone for deafblind persons",
+                "Braille_attachment_for_telephone_for_deafblind_persons",
                 false
             )
         )
-        visualDisabilityList.add(KeyPairBoolData("Low vision Aids", false))
+        visualDisabilityList.add(KeyPairBoolData("Low_vision_Aids", false))
         visualDisabilityList.add(
             KeyPairBoolData(
-                "Special mobility aids(for muscular dystrophy and cerebral palsy person)",
+                "Special_mobility_aids(for_muscular_dystrophy_and_cerebral_palsy_person)",
                 false
             )
         )
 
         hearingDisabilityList = mutableListOf()
-        hearingDisabilityList.add(KeyPairBoolData("Hearing aids", false))
-        hearingDisabilityList.add(KeyPairBoolData("Educational kits", false))
-        hearingDisabilityList.add(KeyPairBoolData("Assistive and alarm devices", false))
-        hearingDisabilityList.add(KeyPairBoolData("Cochlear implant", false))
+        hearingDisabilityList.add(KeyPairBoolData("Hearing_aids", false))
+        hearingDisabilityList.add(KeyPairBoolData("Educational_kits", false))
+        hearingDisabilityList.add(KeyPairBoolData("Assistive_and_alarm_devices", false))
+        hearingDisabilityList.add(KeyPairBoolData("Cochlear_implant", false))
 
         multipleDisabilityList = mutableListOf()
-        multipleDisabilityList.add(KeyPairBoolData("Teaching learning material kit", false))
+        multipleDisabilityList.add(KeyPairBoolData("Teaching_learning_material_kit", false))
         initSpinner()
     }
 

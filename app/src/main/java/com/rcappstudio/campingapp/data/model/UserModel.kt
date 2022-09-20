@@ -7,10 +7,13 @@ data class UserModel(
     var udidNo : String ?= null,
     var dateOfBirth : String ?= null,
     var state : String ?= null,
+    val gender : String ?= null,
+    val category : String ?= null,
     var district : String ?= null,
     var alreadyApplied : Boolean = false,
     var fcmToken : String ?= null,
     val profileImageUrl : String ?= null,
-    val requestStatus: HashMap<String, RequestStatus>?= null
+    val requestStatus: HashMap<String, RequestStatus>?= null,
+    val percentageOfDisability  :String ?= null,
 
 )

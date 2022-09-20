@@ -1,13 +1,16 @@
 package com.rcappstudio.campingapp.ui.slideshow
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.FirebaseDatabase
 import com.rcappstudio.campingapp.R
 import com.rcappstudio.campingapp.data.model.AidsDataModel
@@ -34,19 +37,21 @@ class AidsDataAdapter (
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val aidsDataModel = aidsList[position]
-        holder.tvAidsName.text = aidsDataModel.aidsName!!.toUpperCase()
+        holder.tvAidsName.text = aidsDataModel.aidsName!!.replace('_',' ')
         holder.tvAidsCount.text = aidsDataModel.aidsCount.toString()
 
         holder.ivAddAids.setOnClickListener {
-            //TODO: Yet to write maximum logic
-           holder.tvAidsCount.text = (holder.tvAidsCount.text.toString().toInt() + 1).toString()
+            //TODO: Yet to write maximum logic\
+            var value : String = (holder.tvAidsCount.text.toString().toInt() + 1).toString()
+            Log.d("dataSet", "onBindViewHolder: $value")
+
+            holder.tvAidsCount.text = value
         }
 
         holder.ivSubAids.setOnClickListener {
             if(holder.tvAidsCount.text.toString().toInt() >= 0){
-                holder.tvAidsCount.text = (holder.tvAidsCount.text.toString().toInt() + 1).toString()
+                holder.tvAidsCount.text = (holder.tvAidsCount.text.toString().toInt() - 1).toString()
             }
-
         }
 
         holder.updateButton.setOnClickListener {
@@ -58,7 +63,11 @@ class AidsDataAdapter (
             val campId  = sharedPref.getString(Constants.CAMP_ID, null)
             FirebaseDatabase.getInstance()
                 .getReference("${Constants.CAMPING}/$campId/${Constants.AIDS_DATA}/${aidsDataModel.aidsName}")
-                .setValue( holder.tvAidsCount.text.toString().toInt())
+                .setValue( holder.tvAidsCount.text.toString().toInt()).addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Toast.makeText(context , "Aids updated successfully!!", Toast.LENGTH_LONG).show()
+                    }
+                }
         }
     }
 
